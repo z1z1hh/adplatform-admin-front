@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/adplatform-admin-front/static/css/main.fee94c1a.css",
-    "main.js": "/adplatform-admin-front/static/js/main.b3c721b4.js",
+    "main.js": "/adplatform-admin-front/static/js/main.d8318117.js",
     "static/js/787.cb8da835.chunk.js": "/adplatform-admin-front/static/js/787.cb8da835.chunk.js",
     "static/media/NanumSquareNeo-bRg.ttf": "/adplatform-admin-front/static/media/NanumSquareNeo-bRg.dc621da24afcf6c33e03.ttf",
     "static/media/NanumSquareNeo-eHv.ttf": "/adplatform-admin-front/static/media/NanumSquareNeo-eHv.fbea4b3da8b8e421a165.ttf",
     "index.html": "/adplatform-admin-front/index.html",
     "main.fee94c1a.css.map": "/adplatform-admin-front/static/css/main.fee94c1a.css.map",
-    "main.b3c721b4.js.map": "/adplatform-admin-front/static/js/main.b3c721b4.js.map",
+    "main.d8318117.js.map": "/adplatform-admin-front/static/js/main.d8318117.js.map",
     "787.cb8da835.chunk.js.map": "/adplatform-admin-front/static/js/787.cb8da835.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fee94c1a.css",
-    "static/js/main.b3c721b4.js"
+    "static/js/main.d8318117.js"
   ]
 }
