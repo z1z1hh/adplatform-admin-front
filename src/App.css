@@ -2,37 +2,14 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* 메인 > 상단바 */
+.menubar-wrap { background-color:rgb(52,142,252); padding : 20px; display: flex; gap : 16px; color:white; align-items: center;}
+.menubar-wrap > .user-email { margin-left: auto; position: relative; }
+.menubar-wrap > li > select { padding : 6px; border-radius: 5px; color: rgb(52,142,252);}
+.menubar-wrap > li > .inform-popup { position:absolute; margin-top: 10px; color: black; background-color: white; padding: 12px; border-radius: 5px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* 캠페인 관리 목록*/
+.board-wrap { padding: 20px; }
+.title { text-align: left; margin-bottom: 20px; }
+.title-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; color: gray;}
+.contents-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; }
