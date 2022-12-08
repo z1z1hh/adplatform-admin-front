@@ -24,7 +24,7 @@ function Campaign(props) {
     useEffect(() => {
         axios.get('https://z1z1hh.github.io/adplatform-admin-front/data.json')
         .then((result) => {
-            //console.log(result.data)
+            console.log(result.data)
             setList(result.data)
             //console.log(result.data)
         })
@@ -61,12 +61,12 @@ function Campaign(props) {
         </div>
     )
 }
-
+//추가
 function CampaignList(props) {
     return (
         <li key = {props.i}>
             <span>
-                <input type="checkbox" id="toggle" checked={props.list[props.i].enabled} readOnly 
+                <input type="checkbox"  id="toggle" defaultChecked={props.list[props.i].enabled} 
                         onClick={ ()=>{
                             const copyList = [...props.list]
                             
