@@ -19,7 +19,6 @@ function Campaign(props) {
 
     // 어드민, 매니저, 뷰어 여부, 어드민/매니저만 토글 버튼 변경 가능
     const [userType] = useState(props.userType)
-    const [toggle, setToggle] = useState([])
 
     useEffect(() => {
         axios.get('https://z1z1hh.github.io/adplatform-admin-front/data.json')
