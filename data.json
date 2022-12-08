@@ -3,7 +3,7 @@
    {
       "id":1,
       "name":"캠페인1",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"WEBSITE_TRAFFIC",
       "impressions":384057,
       "clicks":1974,
@@ -58,7 +58,7 @@
    {
       "id":6,
       "name":"캠페인6",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -113,7 +113,7 @@
    {
       "id":11,
       "name":"캠페인11",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -135,7 +135,7 @@
  {
       "id":13,
       "name":"캠페인13",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"WEBSITE_TRAFFIC",
       "impressions":384057,
       "clicks":1974,
@@ -168,7 +168,7 @@
    {
       "id":16,
       "name":"캠페인16",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -256,7 +256,7 @@
    {
       "id":24,
       "name":"캠페인24",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -289,7 +289,7 @@
    {
       "id":27,
       "name":"캠페인27",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -300,7 +300,7 @@
    {
       "id":28,
       "name":"캠페인3",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,
@@ -322,7 +322,7 @@
    {
       "id":30,
       "name":"캠페인3",
-      "enabled":true,
+      "enabled":false,
       "campaign_objective":"LEAD",
       "impressions":538086,
       "clicks":1171,

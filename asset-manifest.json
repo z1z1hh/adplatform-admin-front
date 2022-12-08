@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/adplatform-admin-front/static/css/main.fee94c1a.css",
-    "main.js": "/adplatform-admin-front/static/js/main.d8318117.js",
+    "main.css": "/adplatform-admin-front/static/css/main.f93f6518.css",
+    "main.js": "/adplatform-admin-front/static/js/main.b46da1f5.js",
     "static/js/787.cb8da835.chunk.js": "/adplatform-admin-front/static/js/787.cb8da835.chunk.js",
     "static/media/NanumSquareNeo-bRg.ttf": "/adplatform-admin-front/static/media/NanumSquareNeo-bRg.dc621da24afcf6c33e03.ttf",
     "static/media/NanumSquareNeo-eHv.ttf": "/adplatform-admin-front/static/media/NanumSquareNeo-eHv.fbea4b3da8b8e421a165.ttf",
+    "static/media/btn_toggle_enable.png": "/adplatform-admin-front/static/media/btn_toggle_enable.3279783c66f5c9563c32.png",
+    "static/media/btn_toggle_disable.png": "/adplatform-admin-front/static/media/btn_toggle_disable.e9d08c14da942e942446.png",
     "index.html": "/adplatform-admin-front/index.html",
-    "main.fee94c1a.css.map": "/adplatform-admin-front/static/css/main.fee94c1a.css.map",
-    "main.d8318117.js.map": "/adplatform-admin-front/static/js/main.d8318117.js.map",
+    "main.f93f6518.css.map": "/adplatform-admin-front/static/css/main.f93f6518.css.map",
+    "main.b46da1f5.js.map": "/adplatform-admin-front/static/js/main.b46da1f5.js.map",
     "787.cb8da835.chunk.js.map": "/adplatform-admin-front/static/js/787.cb8da835.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fee94c1a.css",
-    "static/js/main.d8318117.js"
+    "static/css/main.f93f6518.css",
+    "static/js/main.b46da1f5.js"
   ]
 }
