@@ -12,4 +12,44 @@
 .board-wrap { padding: 20px; }
 .title { text-align: left; margin-bottom: 20px; }
 .title-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; color: gray;}
-.contents-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; }
+.contents-wrap > li {align-items: center; padding:8px 0 8px 0;  display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; }
+.btn-enabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_enable.png"); background-size: 25px; border: none;}
+.btn-disabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_disable.png"); background-size: 25px; border: none;}
+.toggleSwitch {
+  width: 35px;
+  height: 20px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #dddddd;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+}
+#toggle {
+  display: none;
+}
+ /* 토글 버튼 */
+.toggleSwitch .toggleButton {
+  /* 버튼은 토글보다 작아야함  */
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: white; 
+}
+
+#toggle:checked ~ .toggleSwitch {
+  background: rgb(52,142,252);
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 15px);
+  background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+  transition: all 0.2s ease-in;
+}
