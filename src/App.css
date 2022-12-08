@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+/* 메인 > 상단바 */
+.menubar-wrap { background-color:rgb(52,142,252); padding : 20px; display: flex; gap : 16px; color:white; align-items: center;}
+.menubar-wrap > .user-email { margin-left: auto; position: relative; }
+.menubar-wrap > li > select { padding : 6px; border-radius: 5px; color: rgb(52,142,252);}
+.menubar-wrap > li > .inform-popup { position:absolute; margin-top: 10px; color: black; background-color: white; padding: 12px; border-radius: 5px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);}
+
+/* 캠페인 관리 목록*/
+.board-wrap { padding: 20px; }
+.title { text-align: left; margin-bottom: 20px; }
+.title-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; color: gray;}
+.contents-wrap > li {align-items: center; padding:8px 0 8px 0;  display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; }
+.btn-enabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_enable.png"); background-size: 25px; border: none;}
+.btn-disabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_disable.png"); background-size: 25px; border: none;}
+
+.toggleSwitch {
+  width: 35px;
+  height: 20px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #dddddd;
+  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+}
+
+ /* 토글 버튼 */
+.toggleSwitch .toggleButton {
+  /* 버튼은 토글보다 작아야함  */
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: white; 
+}
+
+input[type="checkbox"]:checked ~ .toggleSwitch {
+  background: rgb(52,142,252);
+}
+
+input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 15px);
+  background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+  transition: all 0.2s ease-in;
+}
