@@ -57,6 +57,8 @@ function Campaign(props) {
                      })
                 }         
             </ul>
+
+            
         </div>
     )
 }
@@ -65,20 +67,27 @@ function CampaignList(props) {
     return (
         <li key = {props.i}>
             <span>
-                <input type="checkbox"  id="toggle" defaultChecked={props.list[props.i].enabled} 
-                        onClick={ ()=>{
-                            const copyList = [...props.list]
-                            
-                            // 내가 누른 행의 번호와 같은 데이터만 추출
-                            const returnValue = copyList.find((data) => {
-                                return data.id === copyList[props.i].id
-                            })
-                            console.log(returnValue)
+                {
+                    props.userType == 3 ? <input type="checkbox"  id="toggle" disabled={true}></input> :
+                    <>
+                        <input type="checkbox"  id="toggle" defaultChecked={props.list[props.i].enabled} 
+                            onClick={ ()=>{
+                                const copyList = [...props.list]
+                                
+                                // 내가 누른 행의 번호와 같은 데이터만 추출
+                                const returnValue = copyList.find((data) => {
+                                    return data.id === copyList[props.i].id
+                                })
+                                console.log(returnValue)
 
-                        } }/> 
-                <label htmlFor="toggle" className="toggleSwitch" >
-                    <span className="toggleButton"></span>
-                </label>
+                            } }/> 
+                        <label htmlFor="toggle" className="toggleSwitch" >
+                            <span className="toggleButton"></span>
+                        </label>
+                    </>
+                    
+                }
+                
             </span>
             <span>{props.list[props.i].name}</span>
             <span>

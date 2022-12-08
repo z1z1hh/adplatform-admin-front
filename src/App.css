@@ -16,6 +16,9 @@
 .btn-enabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_enable.png"); background-size: 25px; border: none;}
 .btn-disabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_disable.png"); background-size: 25px; border: none;}
 
+input[type="checkbox"] {
+  display:none
+}
 .toggleSwitch {
   width: 35px;
   height: 20px;
@@ -52,3 +55,20 @@ input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
 .toggleSwitch, .toggleButton {
   transition: all 0.2s ease-in;
 }
+
+/* 사용자 관리 */
+.grid-four-columns { grid-template-columns: repeat(4,1fr) !important;}
+
+/* 팝업 */
+.modal-wrap {display: grid; justify-content: center; padding: 20px; border:1px solid #dddddd; background-color: white;
+  position: fixed;
+  width: 600px;
+  top: 50%;
+  left: 50%;
+  right: 50%; 
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);}
+.modal-wrap > input[type="text"] {margin-bottom:20px;}

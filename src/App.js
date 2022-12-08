@@ -1,8 +1,9 @@
 import './common.css';
 import './App.css';
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Routes, Route } from 'react-router-dom'
 import Campaign from './routes/Campaign'
+import User from './routes/User'
 import axios from 'axios';
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       <ul className="menubar-wrap">
         <li>Wisebirds</li>
         <li onClick={()=>{ navigate('/campaign')}}>캠페인</li>
-        { userType === '0' ? <li>사용자</li> : null }
+        { userType === '0' ? <li onClick={()=> { navigate('/user')}}>사용자</li> : null }
         <li className="user-email"
             onClick={()=>{ setPopupShowYn(!popupShowYn) }}>abc@abc.com
             { popupShowYn === true ? <Popup/> : null }
@@ -48,8 +49,12 @@ function App() {
           </select>
         </li>
       </ul>
-
-      <Campaign userType={userType}  />
+      <Routes>
+          <Route path ="/" elements={<Campaign userType={userType} />}></Route>
+					<Route path="/user" element={<User />}></Route>
+			</Routes>
+      
+     
     </div>
   );
 }
