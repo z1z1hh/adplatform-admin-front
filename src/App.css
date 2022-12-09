@@ -71,4 +71,19 @@ input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);}
-.modal-wrap > input[type="text"] {margin-bottom:20px;}
+.modal-wrap > input, div {margin-bottom:10px;}
+.modal-wrap > p {margin-bottom: 20px; color: red;}
+.modal-background {
+  background-color:rgba(0,0,0,.3); 
+  justify-content:center; 
+  align-items:center;     
+  position:fixed;         
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;               
+  display:flex; 
+  padding:15px; 
+ 
+}
+.modal-wrap > .border {border:1px solid #dddddd;}

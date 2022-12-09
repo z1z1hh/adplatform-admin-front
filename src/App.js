@@ -50,7 +50,7 @@ function App() {
         </li>
       </ul>
       <Routes>
-          <Route path ="/" elements={<Campaign userType={userType} />}></Route>
+          <Route path ="/campaign" element={<Campaign userType={userType} />}></Route>
 					<Route path="/user" element={<User />}></Route>
 			</Routes>
       

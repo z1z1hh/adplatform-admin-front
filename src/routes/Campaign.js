@@ -68,9 +68,9 @@ function CampaignList(props) {
         <li key = {props.i}>
             <span>
                 {
-                    props.userType == 3 ? <input type="checkbox"  id="toggle" disabled={true}></input> :
-                    <>
-                        <input type="checkbox"  id="toggle" defaultChecked={props.list[props.i].enabled} 
+                    props.userType == 2 ? <input type="checkbox"  id={`toggle${props.i}`} disabled={true}></input> :
+                    
+                        <input type="checkbox"  id={`toggle${props.i}`} defaultChecked={props.list[props.i].enabled} 
                             onClick={ ()=>{
                                 const copyList = [...props.list]
                                 
@@ -81,13 +81,10 @@ function CampaignList(props) {
                                 console.log(returnValue)
 
                             } }/> 
-                        <label htmlFor="toggle" className="toggleSwitch" >
-                            <span className="toggleButton"></span>
-                        </label>
-                    </>
-                    
                 }
-                
+                <label htmlFor={`toggle${props.i}`} className="toggleSwitch" >
+                    <span className="toggleButton"></span>
+                </label>
             </span>
             <span>{props.list[props.i].name}</span>
             <span>
