@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Error from '../components/Error'
 
 
+// 세자리수 마다 ',' 표시
 const priceToString = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+// 소수점 셋째자리 반올림 후 퍼센티지 형식으로 포맷
 const decimalToPercent = (price) => {
     let newPrice = price.toFixed(2)
     newPrice = parseInt(newPrice * 100) + '%'
@@ -17,18 +20,23 @@ function Campaign(props) {
     // 리스트 데이터 저장할 state
     const [list , setList] = useState([])
 
-    // 어드민, 매니저, 뷰어 여부, 어드민/매니저만 토글 버튼 변경 가능
-    const [userType] = useState(props.userType)
+    // 에러 모달창은 isErrorModal이 true일때만 표시
+    const [isErrorModal, setErrorModal] = useState(false)
 
+    // App 컴포넌트에서 받아온 userType
+    useEffect(() => { console.log(props.userType) }, [props.userType])
+
+    // data.json 에서 캠페인 리스트 받아오기
     useEffect(() => {
         axios.get('https://z1z1hh.github.io/adplatform-admin-front/data.json')
         .then((result) => {
+            // 통신 성공 시 list state에 저장하기
             console.log(result.data)
             setList(result.data)
-            //console.log(result.data)
         })
+        // 통신 오류 시 에러 표시
         .catch((e) => {
-            alert("통신 중 에러가 발생했습니다.")
+            setErrorModal(true)
             console.log(e)
             return
         })
@@ -36,6 +44,7 @@ function Campaign(props) {
     
     return (
         <div className="board-wrap">
+            { isErrorModal === true ? <Error /> : null }
             <p className="title">캠페인 관리</p>
             <ul className="title-wrap">
                 <li>상태</li>
@@ -48,12 +57,12 @@ function Campaign(props) {
                 <li>VTR</li>
             </ul>
             <ul className="contents-wrap">
-               
+               {/* 반복문으로 리스트 표시 */}
                 {
                      list.map(function(a,i){
                          return (
-                                <CampaignList list = {list} i = {i}  userType={userType}  />
-                        )
+                                <CampaignList list = {list} i = {i}  userType={props.userType}  />
+                            )
                      })
                 }         
             </ul>
@@ -62,8 +71,9 @@ function Campaign(props) {
         </div>
     )
 }
-//추가
+
 function CampaignList(props) {
+    //useEffect(() => { console.log(props.userType) }, [props.userType])
     return (
         <li key = {props.i}>
             <span>
@@ -74,7 +84,7 @@ function CampaignList(props) {
                             onClick={ ()=>{
                                 const copyList = [...props.list]
                                 
-                                // 내가 누른 행의 번호와 같은 데이터만 추출
+                                // 내가 누른 행의 id의 데이터만 추출
                                 const returnValue = copyList.find((data) => {
                                     return data.id === copyList[props.i].id
                                 })
@@ -96,13 +106,14 @@ function CampaignList(props) {
             </span>
             <span>{ priceToString(props.list[props.i].clicks) }</span>
             <span>{ decimalToPercent(props.list[props.i].ctr) }</span>
-            <span>{props.list[props.i].video_views}</span>
+            <span>{ props.list[props.i].video_views }</span>
             <span>{ decimalToPercent(props.list[props.i].vtr) }</span>
         </li>
     )
     
 }
 
+// campaign_objective 값에 따른 타이틀명 세팅
 function CampaignTitle(props) {
     const campaign_objective = props.campaign_objective
 

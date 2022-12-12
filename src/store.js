@@ -4,28 +4,48 @@ const user = createSlice({
   name : 'user',
   initialState : [
     {
-      id : 'a@naver.com',
-      name : '홍',
+      id : '3',
+      name : '홍길동',
       password : '',
-      lastLoginTime : '2022-11-13'
+      lastLoginTime : '2022-11-13',
+      email : 'a@naver.com',
+      company : {
+        id : 3,
+        name : "와이즈버즈"
+      }
     },
     {
-      id : 'a1@naver.com',
-      name : '김',
+      id : '2',
+      name : '김철수',
       password : '',
-      lastLoginTime : '2022-11-13'
+      lastLoginTime : '2022-11-13',
+      email : 'ab@naver.com',
+      company : {
+        id : 2,
+        name : "와이즈버즈"
+      }
     },
     {
-      id : 'a2@naver.com',
-      name : '박',
+      id : '0',
+      name : '박철수',
       password : '',
-      lastLoginTime : '2022-11-13'
+      lastLoginTime : '2022-11-13',
+      email : 'abc@naver.com',
+      company : {
+        id : 0,
+        name : "와이즈버즈"
+      }
     },
     {
-      id : 'a3@naver.com',
-      name : '최',
+      id : '1',
+      name : '최길순',
       password : '',
-      lastLoginTime : '2022-11-13'
+      lastLoginTime : '2022-11-13',
+      email : 'abcd@naver.com',
+      company : {
+        id : 1,
+        name : "와이즈버즈"
+      }
     }
   ],
   reducers : {
@@ -33,18 +53,24 @@ const user = createSlice({
       state.push(action.payload)
     },
     modifyUser(state, action) {
-      const result = state.find(function(state){
-        return state.id === action.payload.id
+      console.log(action.payload)
+      // const result = state.find(function(state){
+      //    return state.id === action.payload.id
+      //  })
+      // console.log(JSON.stringify(result))
+
+      const copyUser = [...state]
+      const updateUserName = copyUser.map(function(a,i) {
+        if(a.id === action.payload.id) {
+          a.name = action.payload.name
+        }
       })
-      console.log(result)
-      return result 
     }
   }
 })
 
 
 export const { addUser, modifyUser } = user.actions
-
 
 export default configureStore({
   reducer: { 

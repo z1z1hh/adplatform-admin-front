@@ -11,18 +11,24 @@
 /* 캠페인 관리 목록*/
 .board-wrap { padding: 20px; }
 .title { text-align: left; margin-bottom: 20px; }
-.title-wrap { display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; color: gray;}
-.contents-wrap > li {align-items: center; padding:8px 0 8px 0;  display: grid; grid-template-columns: 0.3fr 0.5fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; }
+.title-wrap { display: grid; grid-template-columns: 0.4fr 0.6fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding:8px 0 8px 0; color: gray;}
+.title-wrap > li:nth-child(2), .title-wrap > li:nth-child(3) {text-align: left;}
+.title-wrap > li:not(:nth-child(1),:nth-child(2),:nth-child(3)) {text-align: right;}  
+.contents-wrap > li {align-items: center; padding:8px 0 8px 0;  display: grid; grid-template-columns: 0.4fr 0.6fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; }
+.contents-wrap > li > span:nth-child(2) , .contents-wrap > li > span:nth-child(3){text-align: left;}
+.contents-wrap  > li > span:not(:nth-child(1),:nth-child(2),:nth-child(3)) {text-align: right;}   
 .btn-enabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_enable.png"); background-size: 25px; border: none;}
 .btn-disabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_disable.png"); background-size: 25px; border: none;}
 
 input[type="checkbox"] {
   display:none
 }
+button {
+  border-radius:5px; padding:5px; border:none; color: white; background-color: rgb(52,142,252);
+}
 .toggleSwitch {
   width: 35px;
   height: 20px;
-  display: block;
   position: relative;
   border-radius: 30px;
   background-color: #dddddd;
@@ -58,23 +64,29 @@ input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
 
 /* 사용자 관리 */
 .grid-four-columns { grid-template-columns: repeat(4,1fr) !important;}
+.add-btn {display: flex;}
+.two-btn-wrap {display: flex; gap: 10px; justify-content: center;}
+.two-btn-wrap > button:nth-child(1) {background-color: #dddddd; color:black;}
 
 /* 팝업 */
-.modal-wrap {display: grid; justify-content: center; padding: 20px; border:1px solid #dddddd; background-color: white;
+.modal-wrap {display: grid; justify-content: center; padding: 35px; border:1px solid #dddddd; background-color: white;
   position: fixed;
   width: 600px;
   top: 50%;
   left: 50%;
   right: 50%; 
+  z-index: 130;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);}
 .modal-wrap > input, div {margin-bottom:10px;}
+.modal_wrap > input { border: 1px solid black; line-height: 25px;}
+.modal-wrap > span:nth-child(n) {margin-bottom: 10px;}
 .modal-wrap > p {margin-bottom: 20px; color: red;}
 .modal-background {
-  background-color:rgba(0,0,0,.3); 
+  background-color:rgba(0,0,0,.6); 
   justify-content:center; 
   align-items:center;     
   position:fixed;         
@@ -84,6 +96,33 @@ input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
   bottom:0;               
   display:flex; 
   padding:15px; 
- 
+  z-index: 100;
 }
 .modal-wrap > .border {border:1px solid #dddddd;}
+.modal-wrap > .error-modal {text-align: left;}
+.error-modal > div:nth-child(2) { margin-bottom: 30px;}
+.error-cls-btn { display: flex; justify-content: flex-end;}
+.inputWrap {
+  position: relative;
+  height: 30px;
+  display: inline-block;
+}
+
+.inputWrap input {
+width: 100%;
+padding-right: 30px;
+height: inherit;
+}
+
+.inputWrap .btnClear {
+position: absolute;
+top: 0;
+right: 0;
+width: 30px;
+height: inherit;
+background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+background-size: 50%;
+border: none;
+outline: none;
+cursor: pointer;
+}

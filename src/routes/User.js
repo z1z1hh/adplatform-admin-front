@@ -2,16 +2,23 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, modifyUser  } from './../store'
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
 
 function User(){
-    const [list, setList] = useState([])
+    // const [list, setList] = useState([])
+    // 사용자 생성 모달 show , hide 여부 저장할 state
     const [isShowModal, setModal] = useState(false)
+
+    // 사용자 수정 모달 show , hide 여부 저장할 state
     const [isModifyModal, setModifyModal] = useState(false)
 
+    // redux store에 있는 state 변경함수 요청을 위함
     const dispatch = useDispatch()
+
+    // store에 저장된 user state 받아오기
     const user = useSelector((state) => {return state.user})
 
-    console.log(useSelector)
+    const [selectedUser, setSelectedUser] = useState('')
     // useEffect(() => {
     //     axios.get('https://z1z1hh.github.io/adplatform-admin-front/user.json')
     //     .then((result) => {
@@ -28,8 +35,11 @@ function User(){
 
     return (
         <div className="board-wrap">
-            <button onClick={()=>{setModal(true)}}>생성</button>
+            
             <p className="title">사용자 관리</p>
+            <div className="add-btn">
+                <button onClick={()=>{setModal(true)}}>생성</button>
+            </div>
             <ul className="title-wrap grid-four-columns">
                 <li>아이디</li>
                 <li>이름</li>
@@ -41,15 +51,20 @@ function User(){
                 {
                      user.map(function(a,i){
                          return (
-                               <li className="grid-four-columns">
-                                    <span>{user[i].id}</span>
+                               <li className="grid-four-columns" key={i}>
+                                    <span>{user[i].email}</span>
                                     <span>{user[i].name}</span>
                                     <span>{user[i].lastLoginTime}</span>
                                     <span>
                                         <button onClick={()=>{
                                             setModifyModal(true)
-                                            const result = dispatch(modifyUser(user[i].id))
-                                            console.log(result)
+
+                                            // 내가 선택한 유저의 정보 
+                                            const result = user.find(function(data) {
+                                                 return data.id === user[i].id
+                                             })
+                                             console.log(result)
+                                             setSelectedUser(result)
                                         }
                                         }>수정</button>
                                     </span>
@@ -59,31 +74,53 @@ function User(){
                      })
                 }         
             </ul>
+            {/* 사용자 생성 모달과 사용자 수정 모달은 state 값이 true일 때만 보여준다. */}
                 {
                     isShowModal === true ? <Modal setModal={setModal}></Modal> : null
                 }
                 {
-                    isModifyModal === true ? <ModifyModal setModifyModal={setModifyModal}></ModifyModal> : null
+                    isModifyModal === true ? <ModifyModal setModifyModal={setModifyModal} selectedUser={selectedUser}></ModifyModal> : null
                 }
         </div>
     )
 }
 
 function Modal({setModal}) {
+    // 아이디 , 비번, 비번 확인, 이름 저장할 state
     const [id, setId] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [name, setName] = useState('')
+
+    // 아이디, 비번, 비번 확인, 이름 경고 문구 저장할 state 
     const [idAlertMsg, setIdAlertMsg] = useState('')
     const [nameAlertMsg, setNameAlertMsg] = useState('')
     const [passwordAlertMsg, setPasswordAlertMsg] = useState('')
     const [confirmPasswordAlertMsg, setConfirmPasswordAlertMsg] = useState('')
+
+    const [passwordType, setPasswordType] = useState({
+        type: 'password',
+        visible: false
+    });
+
+    const handlePasswordType = e => {
+        setPasswordType(() => {
+            if (!passwordType.visible) {
+                return { type: 'text', visible: true };
+            }
+            return { type: 'password', visible: false };
+        })
+    }
+
+    // store의 state 변경함수 요청을 위함
     const dispatch = useDispatch()
     
     const onChangeId = (e) => {
-        const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일 형식 체크 정규식
+        // 이메일 형식 체크 정규식
+        const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
         setId(e.target.value)
 
+        // 아이디가 입력되지 않은 경우
         if(!e.target.value) {
             console.log("id")
             setIdAlertMsg('아이디를 입력해주세요')
@@ -98,7 +135,7 @@ function Modal({setModal}) {
     
    
     const onChangePwd = (e) => {
-        
+        // 비밀번호 형식 체크 (8~15자 영문, 숫자, 특수문자)
         const passwordRule = /(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}/
         setPassword(e.target.value)
 
@@ -130,6 +167,7 @@ function Modal({setModal}) {
     }
     
     const onChangeName = (e) => {
+        // 이름은 한글, 영문만 입력 가능
         const nameRule = /^[가-힣a-zA-Z]+$/;
         setName(e.target.value)
 
@@ -150,27 +188,37 @@ function Modal({setModal}) {
             <div className="modal-wrap">
                 <span>아이디</span>
                 <input type="text" onChange={onChangeId} minLength="9" maxLength="50"></input>
-                    { idAlertMsg !== '' ? <p>{idAlertMsg}</p> : null}  
+                    { idAlertMsg !== '' ? <p>{idAlertMsg}</p> : <p></p>}  
                 <span>비밀번호</span>
-                <input type="password" onChange={onChangePwd} placeholder='영문, 숫자, 특수문자 조합 8~15자'></input>
-                    { passwordAlertMsg !== '' ? <p>{passwordAlertMsg}</p> : null}  
+                <div className="inputWrap">
+                    <input type={passwordType.type} onChange={onChangePwd} placeholder='영문, 숫자, 특수문자 조합 8~15자' />
+                    <button className="btnClear" onClick={handlePasswordType}></button>
+                </div>
+                    { passwordAlertMsg !== '' ? <p>{passwordAlertMsg}</p> : <p></p>}  
                 <span>비밀번호 확인</span>
-                <input type="password" onChange={onChangeConfirmPwd}></input>
-                    { confirmPasswordAlertMsg !== '' ? <p>{confirmPasswordAlertMsg}</p> : null}  
+                
+                <div className="inputWrap">
+                    <input type={passwordType.type} onChange={onChangeConfirmPwd}></input>
+                    <button className="btnClear" onClick={handlePasswordType}></button>
+                </div>
+                { confirmPasswordAlertMsg !== '' ? <p>{confirmPasswordAlertMsg}</p> : <p></p>}  
+
                 <span>이름</span>
                 <input type="text" onChange={onChangeName}></input>
-                    { nameAlertMsg !== '' ? <p>{nameAlertMsg}</p> : null}
-                <div>
+                    { nameAlertMsg !== '' ? <p>{nameAlertMsg}</p> : <p></p>}
+
+                <div className="two-btn-wrap">
                     <button onClick={
                         ()=>{setModal(false)}
                     }>취소</button>
                     <button onClick={()=>{
                         const userData = {
-                            id : id,
+                            email : id,
                             password : password,
                             name : name
                         }
                         dispatch(addUser(userData))
+                        
                         alert("생성 완료")
                         setModal(false)
                         // .then(response => {
@@ -195,7 +243,38 @@ function Modal({setModal}) {
     )
 }
 
-function ModifyModal({setModifyModal}) {
+function ModifyModal({setModifyModal,selectedUser}) {
+    const [modifyName, setModifyName] = useState('')
+    const [nameAlert, setNameAlert] = useState('')
+    const dispatch = useDispatch()
+
+    const onChangeModifyName = (e) => {
+        // 이름은 한글, 영문만 입력 가능
+        const rule = /^[가-힣a-zA-Z]+$/;
+        setModifyName(e.target.value)
+
+        if(!e.target.value) {
+            setNameAlert('이름을 입력해 주세요')
+        } else if(!rule.test(e.target.value) || e.target.value.length < 1 || e.target.value.length > 16) {
+            setNameAlert(' 이름을 올바르게 입력하세요. (숫자, 특수문자, 공백 입력불가)')
+        } else {
+            setNameAlert('')
+        }
+    }
+
+    const modifyValidation = () => {
+        // 이름 벨리데이션 체크 안 된 경우
+        if(nameAlert !== '') {
+            alert(nameAlert)
+        } else {
+            console.log(modifyName)
+            
+            dispatch(modifyUser({id : selectedUser.id, name : modifyName}))
+            setModifyModal(false)
+            alert('수정완료')
+        }
+    }
+
     return (
         <div>
             <div className="modal-background">
@@ -203,11 +282,12 @@ function ModifyModal({setModifyModal}) {
             </div>
             <div className="modal-wrap">
                 <span>아이디</span>
-                <div className="border">아이디입력</div>
+                <div>{selectedUser.email}</div>
                 <span>이름</span>
-                <input type="text"></input>
-                <div>
-                    <button>수정</button>
+                <input type="text" defaultValue={selectedUser.name} onChange={onChangeModifyName}></input>
+                { nameAlert !== '' ? <p>{nameAlert}</p> : <p></p>}  
+                <div className="two-btn-wrap">
+                    <button onClick={modifyValidation}>수정</button>
                     <button onClick={()=>{setModifyModal(false)}}>닫기</button>
                 </div>
                
