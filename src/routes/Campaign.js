@@ -36,7 +36,6 @@ function Campaign(props) {
         axios.get('https://z1z1hh.github.io/adplatform-admin-front/data.json')
         .then((result) => {
             // 통신 성공 시 list state에 저장하기
-            // console.log(result.data.content)
             setList(result.data.content)
         })
         // 통신 오류 시 에러 표시
@@ -78,7 +77,7 @@ function Campaign(props) {
                                     <CampaignList list = {list.slice(
                                         items*(page-1),
                                         items*(page-1) + items
-                                       )} i = {i}  userType={props.userType}  />
+                                       )} i = {i} key={i} userType={props.userType}  />
                                 )
                         }) : <p className="txt-no-data">데이터가 없습니다</p> 
                 }         
@@ -92,7 +91,7 @@ function Campaign(props) {
 function CampaignList(props) {
     //useEffect(() => { console.log(props.userType) }, [props.userType])
     return (
-        <li key = {props.i}>
+        <li>
             <span>
                 {
                     props.userType == 2 ? <input type="checkbox"  id={`toggle${props.i}`} disabled={true}></input> :

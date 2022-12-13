@@ -9,7 +9,7 @@ function User({userType}){
     // openModal = 모달 show / closeModal = 모달 hide
     const { Modal: ErrorModal, openModal, closeModal } = useModal();
     const [typeError, setTypeError] = useState(false)
-    
+
     // 사용자 타입이 어드민에서 매니저 or 뷰어로 바뀌면 사용자 리스트 접근 못하도록 
     useEffect(() => { 
         console.log(userType)
@@ -225,6 +225,10 @@ function Modal({setModal}) {
                         ()=>{setModal(false)}
                     }>취소</button>
                     <button onClick={()=>{
+                        if(idAlertMsg || nameAlertMsg || passwordAlertMsg || confirmPasswordAlertMsg) {
+                            alert('입력 값 확인')
+                            return
+                        }
                         const userData = {
                             email : id,
                             password : password,
@@ -279,13 +283,14 @@ function ModifyModal({setModifyModal,selectedUser}) {
         // 이름 벨리데이션 체크 안 된 경우
         if(nameAlert !== '') {
             alert(nameAlert)
-        } else {
-            console.log(modifyName)
-            
-            dispatch(modifyUser({id : selectedUser.id, name : modifyName}))
-            setModifyModal(false)
-            alert('수정완료')
-        }
+            return
+        } 
+        console.log(modifyName)
+        
+        dispatch(modifyUser({id : selectedUser.id, name : modifyName}))
+        setModifyModal(false)
+        alert('수정완료')
+        
     }
 
     return (
@@ -297,7 +302,7 @@ function ModifyModal({setModifyModal,selectedUser}) {
                 <span>아이디</span>
                 <div>{selectedUser.email}</div>
                 <span>이름</span>
-                <input type="text" defaultValue={selectedUser.name} onChange={onChangeModifyName}></input>
+                <input type="text" defaultvalue={selectedUser.name} onChange={onChangeModifyName}></input>
                 { nameAlert !== '' ? <p>{nameAlert}</p> : <p></p>}  
                 <div className="two-btn-wrap">
                     <button onClick={modifyValidation}>수정</button>

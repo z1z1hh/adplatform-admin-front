@@ -60,7 +60,7 @@ const user = createSlice({
       // console.log(JSON.stringify(result))
 
       const copyUser = [...state]
-      const updateUserName = copyUser.map(function(a,i) {
+      copyUser.map(function(a,i) {
         if(a.id === action.payload.id) {
           a.name = action.payload.name
         }

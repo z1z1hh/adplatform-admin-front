@@ -47,7 +47,7 @@ function App() {
             { popupShowYn === true ? <Popup user={user[0]}/> : null }
         </li>
         <li>
-          <select defalutValue="0" onChange={changeUserType}>
+          <select defalutvalue="0" onChange={changeUserType}>
             <option value="0">어드민</option>
             <option value="1">매니저</option>
             <option value="2">뷰어</option>
