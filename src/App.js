@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 import Campaign from './routes/Campaign'
 import User from './routes/User'
 import axios from 'axios';
-import Error from './components/Error'
 
 function App() {
 
@@ -57,7 +56,7 @@ function App() {
       </ul>
       <Routes>
           <Route path ="/campaign" element={<Campaign userType={userType} />}></Route>
-					<Route path="/user" element={<User />}></Route>
+					<Route path="/user" element={<User userType={userType} />}></Route>
 			</Routes>
       
      

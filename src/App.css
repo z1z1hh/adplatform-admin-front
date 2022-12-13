@@ -23,6 +23,7 @@
 input[type="checkbox"] {
   display:none
 }
+input {height:30px;}
 button {
   border-radius:5px; padding:5px; border:none; color: white; background-color: rgb(52,142,252);
 }
@@ -81,9 +82,9 @@ input[type="checkbox"]:checked ~ .toggleSwitch .toggleButton {
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);}
-.modal-wrap > input, div {margin-bottom:10px;}
-.modal_wrap > input { border: 1px solid black; line-height: 25px;}
-.modal-wrap > span:nth-child(n) {margin-bottom: 10px;}
+.modal-wrap > input, div:not(.two-btn-wrap, .modal-wrap) {margin-bottom:18px;}
+.modal_wrap > input { border: 1px solid black; }
+.modal-wrap > span {margin-bottom: 10px;}
 .modal-wrap > p {margin-bottom: 20px; color: red;}
 .modal-background {
   background-color:rgba(0,0,0,.6); 

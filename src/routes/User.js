@@ -2,9 +2,23 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, modifyUser  } from './../store'
-<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
+import useModal from '../components/ErrorModal'
 
-function User(){
+function User({userType}){
+    // useModal에서 리턴해준 값들 받아오기 (컴포넌트, 상태설정 함수)
+    // openModal = 모달 show / closeModal = 모달 hide
+    const { Modal: ErrorModal, openModal, closeModal } = useModal();
+    const [typeError, setTypeError] = useState(false)
+    // 사용자 타입이 어드민에서 매니저 or 뷰어로 바뀌면 사용자 리스트 접근 못하도록 
+    useEffect(() => { 
+        console.log(userType)
+        if(userType != 0) {
+            setTypeError(true)
+            openModal()     // 에러 모달 표시
+        } 
+    }
+    , [userType])
+    
     // const [list, setList] = useState([])
     // 사용자 생성 모달 show , hide 여부 저장할 state
     const [isShowModal, setModal] = useState(false)
@@ -12,13 +26,11 @@ function User(){
     // 사용자 수정 모달 show , hide 여부 저장할 state
     const [isModifyModal, setModifyModal] = useState(false)
 
-    // redux store에 있는 state 변경함수 요청을 위함
-    const dispatch = useDispatch()
-
     // store에 저장된 user state 받아오기
     const user = useSelector((state) => {return state.user})
 
     const [selectedUser, setSelectedUser] = useState('')
+
     // useEffect(() => {
     //     axios.get('https://z1z1hh.github.io/adplatform-admin-front/user.json')
     //     .then((result) => {
@@ -32,10 +44,10 @@ function User(){
     //         return
     //     })
     // }, [])
-
+  
     return (
         <div className="board-wrap">
-            
+            <ErrorModal typeError={typeError} />
             <p className="title">사용자 관리</p>
             <div className="add-btn">
                 <button onClick={()=>{setModal(true)}}>생성</button>
@@ -122,13 +134,13 @@ function Modal({setModal}) {
 
         // 아이디가 입력되지 않은 경우
         if(!e.target.value) {
-            console.log("id")
+            //console.log("id")
             setIdAlertMsg('아이디를 입력해주세요')
         } else if(e.target.value.length < 9 || e.target.value.length > 50 || !regExp.test(e.target.value)) {
-            console.log("id2")
+            //console.log("id2")
             setIdAlertMsg('올바른 이메일 주소를 입력하세요.')
         } else {
-            console.log('3')
+            //console.log('3')
             setIdAlertMsg('')
         }
     }
@@ -140,13 +152,13 @@ function Modal({setModal}) {
         setPassword(e.target.value)
 
         if(!password) {
-            console.log("password")
+            //console.log("password")
             setPasswordAlertMsg('비밀번호를 입력해주세요')
         } else if(!passwordRule.test(password)) {
-            console.log("pwd2")
+            //console.log("pwd2")
             setPasswordAlertMsg('8~15자 영문, 숫자, 특수문자를 사용하세요. ')
         } else {
-            console.log('3')
+            //console.log('3')
             setPasswordAlertMsg('')
         }
     }
@@ -155,13 +167,13 @@ function Modal({setModal}) {
         setConfirmPassword(e.target.value)
 
         if(!e.target.value) {
-            console.log("password2")
+            //console.log("password2")
             setConfirmPasswordAlertMsg('비밀번호를 입력해주세요')
         } else if(password != e.target.value) {
-            console.log(password)
+            //console.log(password)
             setConfirmPasswordAlertMsg('비밀번호가 일치하지 않습니다.')
         } else {
-            console.log('pwd3')
+            //console.log('pwd3')
             setConfirmPasswordAlertMsg('')
         }
     }
@@ -172,7 +184,7 @@ function Modal({setModal}) {
         setName(e.target.value)
 
         if(!e.target.value) {
-            console.log('name')
+            //console.log('name')
             setNameAlertMsg('이름을 입력해 주세요')
         } else if(!nameRule.test(e.target.value) || e.target.value.length < 1 || e.target.value.length > 16) {
             setNameAlertMsg(' 이름을 올바르게 입력하세요. (숫자, 특수문자, 공백 입력불가')

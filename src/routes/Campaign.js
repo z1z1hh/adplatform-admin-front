@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Error from '../components/Error'
-
+import useModal from '../components/ErrorModal'
 
 // 세자리수 마다 ',' 표시
 const priceToString = (price) => {
@@ -20,9 +19,10 @@ function Campaign(props) {
     // 리스트 데이터 저장할 state
     const [list , setList] = useState([])
 
-    // 에러 모달창은 isErrorModal이 true일때만 표시
-    const [isErrorModal, setErrorModal] = useState(false)
-
+    // useModal에서 리턴해준 값들 받아오기 (컴포넌트, 상태설정 함수)
+    // openModal = 모달 show / closeModal = 모달 hide
+    const { Modal: ErrorModal, openModal, closeModal } = useModal();
+   
     // App 컴포넌트에서 받아온 userType
     useEffect(() => { console.log(props.userType) }, [props.userType])
 
@@ -36,7 +36,8 @@ function Campaign(props) {
         })
         // 통신 오류 시 에러 표시
         .catch((e) => {
-            setErrorModal(true)
+            // 통신 실패 시 openModal 호출 !!
+            openModal()
             console.log(e)
             return
         })
@@ -44,7 +45,8 @@ function Campaign(props) {
     
     return (
         <div className="board-wrap">
-            { isErrorModal === true ? <Error /> : null }
+            <ErrorModal />
+            {/* { isErrorModal === true ? <Error /> : null } */}
             <p className="title">캠페인 관리</p>
             <ul className="title-wrap">
                 <li>상태</li>
