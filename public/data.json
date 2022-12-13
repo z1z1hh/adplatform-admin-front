@@ -225,18 +225,18 @@
       "id":21,
       "name":"캠페인21",
       "enabled":true,
-      "campaign_objective":"LEAD",
-      "impressions":538086,
+      "campaign_objective":"VIDEO_VIEWS",
+      "impressions":185736,
       "clicks":1171,
-      "ctr":0.3833,
+      "ctr":0.9173,
       "video_views":512,
-      "vtr":0.2512
+      "vtr":0.3866
    },
    {
       "id":22,
       "name":"캠페인22",
       "enabled":true,
-      "campaign_objective":"LEAD",
+      "campaign_objective":"APP_INSTALLATION",
       "impressions":538086,
       "clicks":1171,
       "ctr":0.3833,
@@ -248,11 +248,11 @@
       "name":"캠페인23",
       "enabled":true,
       "campaign_objective":"LEAD",
-      "impressions":538086,
-      "clicks":1171,
-      "ctr":0.3833,
-      "video_views":512,
-      "vtr":0.2512
+      "impressions":193773,
+      "clicks":234,
+      "ctr":0.1731,
+      "video_views":624,
+      "vtr":0.1004
    },
    {
       "id":24,
@@ -300,36 +300,36 @@
    },
    {
       "id":28,
-      "name":"캠페인3",
+      "name":"캠페인28",
       "enabled":false,
-      "campaign_objective":"LEAD",
-      "impressions":538086,
-      "clicks":1171,
-      "ctr":0.3833,
-      "video_views":512,
-      "vtr":0.2512
+      "campaign_objective":"BRAND",
+      "impressions":91873,
+      "clicks":9105,
+      "ctr":0.48717,
+      "video_views":107,
+      "vtr":0.68737
    },
    {
       "id":29,
-      "name":"캠페인3",
+      "name":"캠페인29",
       "enabled":true,
-      "campaign_objective":"LEAD",
-      "impressions":538086,
+      "campaign_objective":"SALES",
+      "impressions":317552,
       "clicks":1171,
-      "ctr":0.3833,
+      "ctr":0.2817,
       "video_views":512,
-      "vtr":0.2512
+      "vtr":0.6621
    },
    {
       "id":30,
-      "name":"캠페인3",
+      "name":"캠페인30",
       "enabled":false,
-      "campaign_objective":"LEAD",
-      "impressions":538086,
-      "clicks":1171,
-      "ctr":0.3833,
-      "video_views":512,
-      "vtr":0.2512
+      "campaign_objective":"APP_INSTALLATION",
+      "impressions":183772,
+      "clicks":910,
+      "ctr":0.2653,
+      "video_views":877,
+      "vtr":0.1937
    }
 ],
 "size": 25,
