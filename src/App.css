@@ -17,8 +17,6 @@
 .contents-wrap > li {align-items: center; padding:8px 0 8px 0;  display: grid; grid-template-columns: 0.4fr 0.6fr 2fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; border-bottom: 1px solid #dddddd; }
 .contents-wrap > li > span:nth-child(2) , .contents-wrap > li > span:nth-child(3){text-align: left;}
 .contents-wrap  > li > span:not(:nth-child(1),:nth-child(2),:nth-child(3)) {text-align: right;}   
-.btn-enabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_enable.png"); background-size: 25px; border: none;}
-.btn-disabled { width : 25px; height: 25px; background-image: url("./image/btn_toggle_disable.png"); background-size: 25px; border: none;}
 .txt-no-data { padding: 20px;}
 input[type="checkbox"] {
   display:none
