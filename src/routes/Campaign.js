@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import useModal from '../components/ErrorModal'
+import PaginationWrap from '../components/Pagination'
 
 // 세자리수 마다 ',' 표시
 const priceToString = (price) => {
@@ -18,11 +19,15 @@ function Campaign(props) {
     
     // 리스트 데이터 저장할 state
     const [list , setList] = useState([])
-
+    
     // useModal에서 리턴해준 값들 받아오기 (컴포넌트, 상태설정 함수)
     // openModal = 모달 show / closeModal = 모달 hide
     const { Modal: ErrorModal, openModal, closeModal } = useModal();
-   
+    
+    const [page, setPage] = useState(1);
+    const [items, setItems] = useState(25);
+    const handlePageChange = (page) => { setPage(page); };
+
     // App 컴포넌트에서 받아온 userType
     useEffect(() => { console.log(props.userType) }, [props.userType])
 
@@ -31,8 +36,8 @@ function Campaign(props) {
         axios.get('https://z1z1hh.github.io/adplatform-admin-front/data.json')
         .then((result) => {
             // 통신 성공 시 list state에 저장하기
-            console.log(result.data)
-            setList(result.data)
+            // console.log(result.data.content)
+            setList(result.data.content)
         })
         // 통신 오류 시 에러 표시
         .catch((e) => {
@@ -42,11 +47,13 @@ function Campaign(props) {
             return
         })
     }, [])
-    
+
+    console.log(items*(page-1), items*(page-1)+items)
+
     return (
         <div className="board-wrap">
             <ErrorModal />
-            {/* { isErrorModal === true ? <Error /> : null } */}
+            
             <p className="title">캠페인 관리</p>
             <ul className="title-wrap">
                 <li>상태</li>
@@ -61,14 +68,22 @@ function Campaign(props) {
             <ul className="contents-wrap">
                {/* 반복문으로 리스트 표시 */}
                 {
-                     list.map(function(a,i){
-                         return (
-                                <CampaignList list = {list} i = {i}  userType={props.userType}  />
-                            )
-                     })
+                     list !== undefined ? 
+                        list.slice(
+                             items*(page-1),
+                             items*(page-1) + items
+                            ).map(function(a,i){
+                            return (
+                                
+                                    <CampaignList list = {list.slice(
+                                        items*(page-1),
+                                        items*(page-1) + items
+                                       )} i = {i}  userType={props.userType}  />
+                                )
+                        }) : <p className="txt-no-data">데이터가 없습니다</p> 
                 }         
             </ul>
-
+            <PaginationWrap page={page} items={items} totalItemsCount={list.length} pageRangeDisplayed={25} handlePageChange={handlePageChange}/>
             
         </div>
     )
@@ -90,7 +105,6 @@ function CampaignList(props) {
                                 const returnValue = copyList.find((data) => {
                                     return data.id === copyList[props.i].id
                                 })
-                                console.log(returnValue)
 
                             } }/> 
                 }
@@ -112,7 +126,6 @@ function CampaignList(props) {
             <span>{ decimalToPercent(props.list[props.i].vtr) }</span>
         </li>
     )
-    
 }
 
 // campaign_objective 값에 따른 타이틀명 세팅

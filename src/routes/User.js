@@ -9,6 +9,7 @@ function User({userType}){
     // openModal = 모달 show / closeModal = 모달 hide
     const { Modal: ErrorModal, openModal, closeModal } = useModal();
     const [typeError, setTypeError] = useState(false)
+    
     // 사용자 타입이 어드민에서 매니저 or 뷰어로 바뀌면 사용자 리스트 접근 못하도록 
     useEffect(() => { 
         console.log(userType)

@@ -1,4 +1,5 @@
-[
+{
+"content" : [
 
    {
       "id":1,
@@ -330,4 +331,8 @@
       "video_views":512,
       "vtr":0.2512
    }
-]
+],
+"size": 25,
+"total_elements": 30,
+"total_pages": 0
+}

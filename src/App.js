@@ -40,14 +40,14 @@ function App() {
     <div className="App">
       <ul className="menubar-wrap">
         <li>Wisebirds</li>
-        <li onClick={()=>{ navigate('/campaign')}}>캠페인</li>
+        <li onClick={()=>{ navigate('/')}}>캠페인</li>
         { userType == '0' ? <li onClick={()=> { navigate('/user')}}>사용자</li> : null }
         <li className="user-email"
             onClick={()=>{ setPopupShowYn(!popupShowYn) }}>{user[0].email}
             { popupShowYn === true ? <Popup user={user[0]}/> : null }
         </li>
         <li>
-          <select defalutValue="0" key="0" onChange={changeUserType}>
+          <select defalutValue="0" onChange={changeUserType}>
             <option value="0">어드민</option>
             <option value="1">매니저</option>
             <option value="2">뷰어</option>
@@ -55,11 +55,10 @@ function App() {
         </li>
       </ul>
       <Routes>
-          <Route path ="/campaign" element={<Campaign userType={userType} />}></Route>
+          <Route path ="/" element={<Campaign userType={userType} />}></Route>
 					<Route path="/user" element={<User userType={userType} />}></Route>
 			</Routes>
       
-     
     </div>
   );
 }
