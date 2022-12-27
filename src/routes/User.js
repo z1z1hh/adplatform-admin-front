@@ -290,7 +290,7 @@ function ModifyModal({setModifyModal,selectedUser}) {
         dispatch(modifyUser({id : selectedUser.id, name : modifyName}))
         setModifyModal(false)
         alert('수정완료')
-        
+
     }
 
     return (

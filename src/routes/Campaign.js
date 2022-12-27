@@ -47,8 +47,6 @@ function Campaign(props) {
         })
     }, [])
 
-    console.log(items*(page-1), items*(page-1)+items)
-
     return (
         <div className="board-wrap">
             <ErrorModal />
@@ -78,8 +76,8 @@ function Campaign(props) {
                                         items*(page-1),
                                         items*(page-1) + items
                                        )} i = {i} key={i} userType={props.userType}  />
-                                )
-                        }) : <p className="txt-no-data">데이터가 없습니다</p> 
+                            )
+                            }) : <p className="txt-no-data">데이터가 없습니다</p> 
                 }         
             </ul>
             <PaginationWrap page={page} items={items} totalItemsCount={list.length} pageRangeDisplayed={25} handlePageChange={handlePageChange}/>
